@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+<section class="container">
+    <div>
+        <div id="grid">
+
+        </div>
+    </div>
+</section>
+<script>
+    const grid = document.querySelector("#grid");
+    window.onload = () => {
+        let cells = 5;
+        // prompt("Enter how many cells you want to create");
+        for (let i = 0; i < cells; i++) {
+            const color = randomColor();
+            grid.insertAdjacentHTML('beforeend',
+                        `<div
+                        class="box"
+                         style=background-color:#${color}>
+                         <p style="color:#${color}">${i + 1}</p>
+                         </div>`)
+            }
+
+        const box = document.querySelectorAll(".box");
+        box.forEach((item, idx) => {
+            item.addEventListener("click", (e) => {
+                if (e.target.style['backgroundColor'] === "white") {
+                    e.target.style['backgroundColor'] = `#${randomColor()}`;
+                } else {
+                    e.target.style['backgroundColor'] = "white"
+                }
+            })
+        })
+    }
+    const randomColor = () => {
+        return Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+</script>
+</body>
+</html>
